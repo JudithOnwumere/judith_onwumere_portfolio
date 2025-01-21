@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:judith_onwumere/styles/app/app_colours.dart';
 import 'package:judith_onwumere/styles/app/app_spacing.dart';
 import 'package:judith_onwumere/styles/app/app_strings.dart';
 import 'package:judith_onwumere/styles/app/app_text_styles.dart';
 import 'package:judith_onwumere/widgets/app/social_links.dart';
+import 'dart:js' as js;
 
 class WorksAppbar extends StatelessWidget implements PreferredSizeWidget {
   const WorksAppbar({super.key});
@@ -35,11 +37,17 @@ class WorksAppbar extends StatelessWidget implements PreferredSizeWidget {
               ],
             ),
           ),
-          actions: const [
+          actions: [
             Padding(
-              padding: EdgeInsets.only(right: 32),
-              child: SocialLinks(),
-            ),
+                padding: const EdgeInsets.only(right: 32),
+                child: IconButton(
+                  onPressed: () {
+                    js.context.callMethod('open', [
+                      'https://linktr.ee/Judith_Onwumere?utm_source=linktree_profile_share'
+                    ]);
+                  },
+                  icon: const Icon(FontAwesome.people_group_solid),
+                )),
           ],
         );
       } else {
